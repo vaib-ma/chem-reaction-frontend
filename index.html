@@ -2,35 +2,217 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chemistry Reaction Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Reaction Explorer | Learn Chemical Reactions</title>
+  <meta name="description" content="Explore chemical reactions, learn chemistry concepts, and discover interactive chemistry tools.">
+  <meta name="keywords" content="chemistry, chemical reactions, periodic table, science, education, chemistry blog">
   <style>
-    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
-    input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
-    button { padding: 10px 20px; background-color: #007acc; color: white; border: none; cursor: pointer; }
-    .reaction { margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px; }
+    body { 
+      font-family: 'Arial', sans-serif; 
+      background: #f4f4f4; 
+      margin: 0; 
+      padding: 0; 
+      color: #333;
+      line-height: 1.6;
+    }
+    .container { 
+      max-width: 1000px; 
+      margin: auto; 
+      background: white; 
+      padding: 20px; 
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    header {
+      background: #007acc;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h1 { margin: 0; font-size: 2.2em; }
+    h2 { color: #007acc; border-bottom: 2px solid #007acc; padding-bottom: 5px; }
+    input, textarea { 
+      width: 100%; 
+      margin-bottom: 15px; 
+      padding: 12px; 
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button { 
+      padding: 12px 25px; 
+      background-color: #007acc; 
+      color: white; 
+      border: none; 
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover { background-color: #0066a3; }
+    .reaction { 
+      margin: 25px 0; 
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .ad-container {
+      margin: 30px 0;
+      padding: 15px;
+      background: #f0f0f0;
+      text-align: center;
+      border-radius: 5px;
+    }
+    .blog-post {
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .blog-post img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin: 15px 0;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .nav a {
+      margin: 0 10px;
+      color: #007acc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: white;
+      margin-top: 40px;
+    }
+    @media (max-width: 768px) {
+      .container { padding: 15px; }
+      h1 { font-size: 1.8em; }
+    }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8239377679801110"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8239377679801110" crossorigin="anonymous"></script>
 </head>
 <body>
 
+<header>
+  <div class="container">
+    <h1>🧪 Chemistry Reaction Explorer</h1>
+    <p>Discover, share, and learn about chemical reactions</p>
+  </div>
+</header>
+
 <div class="container">
-  <h1>🧪 Chemistry Reaction Explorer</h1>
+  <div class="ad-container">
+    <!-- AdSense Header Ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8239377679801110"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <form id="reactionForm">
-    <input type="text" id="reaction" placeholder="Chemical Reaction" required />
-    <textarea id="explanation" placeholder="Explanation (optional)"></textarea>
-    <input type="text" id="video" placeholder="YouTube Video URL (optional)" />
+    <h2>Submit a Chemical Reaction</h2>
+    <input type="text" id="reaction" placeholder="Enter chemical reaction (e.g., 2H₂ + O₂ → 2H₂O)" required />
+    <textarea id="explanation" placeholder="Detailed explanation of the reaction (optional)" rows="4"></textarea>
+    <input type="text" id="video" placeholder="YouTube Video URL demonstrating the reaction (optional)" />
     <button type="submit">Submit Reaction</button>
   </form>
 
-  <button onclick="togglePeriodicTable()">Show/Hide Periodic Table</button>
+  <div class="ad-container">
+    <!-- AdSense In-Content Ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8239377679801110"
+         data-ad-slot="2345678901"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <button onclick="togglePeriodicTable()">Show/Hide Interactive Periodic Table</button>
   <div id="periodicTableContainer" style="display:none; margin-top:20px;">
     <iframe src="https://ptable.com" width="100%" height="600" style="border:none;"></iframe>
   </div>
 
   <div id="reactionList"></div>
+
+  <div class="ad-container">
+    <!-- AdSense Bottom Ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8239377679801110"
+         data-ad-slot="3456789012"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div id="chemistryBlog">
+    <h2>Chemistry Blog</h2>
+    
+    <div class="blog-post">
+      <h3>The Science Behind Combustion Reactions</h3>
+      <p>Combustion reactions are exothermic redox chemical reactions that occur between a fuel and an oxidant, typically producing heat and light in the form of flame. The most common combustion reaction is the burning of hydrocarbons with oxygen to produce carbon dioxide and water...</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Combustion_reaction_of_methane.jpg/800px-Combustion_reaction_of_methane.jpg" alt="Combustion reaction illustration">
+      <p>Combustion is essential for many human activities including heating, cooking, transportation, and electricity generation. Understanding combustion chemistry helps in developing more efficient engines and reducing pollution...</p>
+    </div>
+    
+    <div class="blog-post">
+      <h3>Acid-Base Reactions: Neutralization Explained</h3>
+      <p>An acid-base reaction is a chemical reaction that occurs between an acid and a base. These reactions typically form water and a salt and involve the exchange of protons (H⁺ ions). The general form of an acid-base reaction is: Acid + Base → Salt + Water...</p>
+      <p>Understanding acid-base chemistry is crucial in many fields including medicine (pH balance in the body), environmental science (acid rain), and industrial processes (chemical manufacturing)...</p>
+    </div>
+    
+    <div class="blog-post">
+      <h3>Redox Reactions: The Chemistry of Electron Transfer</h3>
+      <p>Redox (reduction-oxidation) reactions involve the transfer of electrons between chemical species. The species that loses electrons is oxidized, while the species that gains electrons is reduced. These reactions are fundamental to many biological processes and industrial applications...</p>
+      <img src="https://www.chemistrylearner.com/wp-content/uploads/2020/08/Redox-Reaction-Examples.jpg" alt="Redox reaction examples">
+      <p>Everyday examples of redox reactions include rusting of iron, bleaching of stains, and the operation of batteries. In living organisms, cellular respiration is essentially a series of redox reactions...</p>
+    </div>
+    
+    <div class="blog-post">
+      <h3>Precipitation Reactions: When Solids Form in Solution</h3>
+      <p>A precipitation reaction occurs when two soluble ionic compounds react in aqueous solution to form an insoluble solid called a precipitate. These reactions follow the general pattern: AB(aq) + CD(aq) → AD(s) + CB(aq)...</p>
+      <p>Precipitation reactions are used in water treatment, qualitative chemical analysis, and the production of pigments and other industrial chemicals. They also play important roles in biological systems such as bone formation and kidney stone development...</p>
+    </div>
+    
+    <div class="blog-post">
+      <h3>The Chemistry of Photosynthesis</h3>
+      <p>Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy, usually from the sun, into chemical energy stored in glucose. The overall reaction can be represented as: 6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂...</p>
+      <img src="https://www.sciencefacts.net/wp-content/uploads/2020/06/Photosynthesis-Process.jpg" alt="Photosynthesis process">
+      <p>This remarkable process not only provides energy for nearly all life on Earth but also maintains atmospheric oxygen levels and serves as the foundation of the food chain. Understanding photosynthesis is key to addressing global challenges like food security and climate change...</p>
+    </div>
+  </div>
+  
+  <div class="nav">
+    <a href="#chemistryBlog">More Chemistry Articles</a>
+    <a href="#reactionList">View Reactions</a>
+    <a href="#reactionForm">Submit a Reaction</a>
+  </div>
 </div>
+
+<footer>
+  <p>Chemistry Reaction Explorer &copy; 2023 | Educational Resource for Chemistry Enthusiasts</p>
+  <p>Contact: chemistry@example.com | Privacy Policy | Terms of Service</p>
+</footer>
 
 <script>
   const backendUrl = "https://chem-reaction-backend-2.onrender.com";
@@ -47,9 +229,12 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     }).then(res => res.json()).then(() => {
-      alert("Reaction submitted!");
+      alert("Reaction submitted successfully! Thank you for your contribution.");
       document.getElementById("reactionForm").reset();
       loadReactions();
+    }).catch(err => {
+      alert("Error submitting reaction. Please try again later.");
+      console.error(err);
     });
   });
 
@@ -58,17 +243,38 @@
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById("reactionList");
-        container.innerHTML = "";
+        container.innerHTML = "<h2>Recent Chemical Reactions</h2>";
+        if (data.length === 0) {
+          container.innerHTML += "<p>No reactions submitted yet. Be the first!</p>";
+          return;
+        }
         data.forEach(reaction => {
           container.innerHTML += `
             <div class="reaction">
-              <strong>${reaction.reaction}</strong><br/>
+              <h3>${reaction.reaction}</h3>
               ${reaction.explanation ? `<p>${reaction.explanation}</p>` : ""}
-              ${reaction.video_url ? `<a href="${reaction.video_url}" target="_blank">Watch on YouTube</a>` : ""}
-              <p><em>Submitted at: ${reaction.submitted_at}</em></p>
+              ${reaction.video_url ? 
+                `<div class="video-container">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/${extractVideoId(reaction.video_url)}" 
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen></iframe>
+                </div>` 
+                : ""}
+              <p><em>Submitted at: ${new Date(reaction.submitted_at).toLocaleString()}</em></p>
             </div>`;
         });
+      })
+      .catch(err => {
+        console.error("Error loading reactions:", err);
+        document.getElementById("reactionList").innerHTML = 
+          "<p>Could not load reactions. Please check your internet connection and try again.</p>";
       });
+  }
+
+  function extractVideoId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
   }
 
   function togglePeriodicTable() {
@@ -76,7 +282,15 @@
     container.style.display = container.style.display === "none" ? "block" : "none";
   }
 
-  loadReactions();
+  // Load reactions when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    loadReactions();
+    
+    // Initialize AdSense
+    if (typeof adsbygoogle !== 'undefined') {
+      adsbygoogle.push({});
+    }
+  });
 </script>
 
 </body>
