@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chemistry Reaction Explorer | Professional Tools</title>
-  <!-- 3DMol.js for molecule visualization -->
-  <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
-  <script src="https://3Dmol.org/build/3Dmol.ui-min.js"></script>
-  <!-- JSME for molecular structure input -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsme/2017.02.26/jsme/jsme.nocache.js"></script>
+  <title>Chemistry Reaction Explorer | Learn Chemical Reactions</title>
+  <meta name="description" content="Explore chemical reactions, learn chemistry concepts, and discover interactive chemistry tools.">
+  <meta name="keywords" content="chemistry, chemical reactions, periodic table, science, education, chemistry blog">
   <style>
     body { 
       font-family: 'Arial', sans-serif; 
@@ -35,7 +32,7 @@
     }
     h1 { margin: 0; font-size: 2.2em; }
     h2 { color: #007acc; border-bottom: 2px solid #007acc; padding-bottom: 5px; }
-    input, textarea, select { 
+    input, textarea { 
       width: 100%; 
       margin-bottom: 15px; 
       padding: 12px; 
@@ -52,7 +49,6 @@
       border-radius: 4px;
       font-size: 16px;
       transition: background-color 0.3s;
-      margin: 5px;
     }
     button:hover { background-color: #0066a3; }
     .reaction { 
@@ -69,89 +65,27 @@
       text-align: center;
       border-radius: 5px;
     }
-    .tool-container {
-      margin: 30px 0;
-      padding: 20px;
-      background: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    .blog-post {
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
     }
-    .tool-tabs {
+    .blog-post img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin: 15px 0;
+    }
+    .nav {
       display: flex;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ddd;
-    }
-    .tool-tab {
-      padding: 10px 20px;
-      cursor: pointer;
-      background: #eee;
-      margin-right: 5px;
-      border-radius: 5px 5px 0 0;
-    }
-    .tool-tab.active {
-      background: #007acc;
-      color: white;
-    }
-    .tool-content {
-      display: none;
-    }
-    .tool-content.active {
-      display: block;
-    }
-    .molecule-canvas {
-      width: 100%;
-      height: 400px;
-      background: white;
-      border: 1px solid #ddd;
-      margin: 15px 0;
-    }
-    .simulator-area {
-      min-height: 200px;
-      border: 2px dashed #007acc;
-      padding: 20px;
-      margin: 15px 0;
-      text-align: center;
-    }
-    .element-draggable {
-      display: inline-block;
-      padding: 10px;
-      margin: 5px;
-      background: #007acc;
-      color: white;
-      border-radius: 5px;
-      cursor: grab;
-    }
-    .calculation-result {
-      font-weight: bold;
-      color: #007acc;
-      margin: 15px 0;
-      padding: 10px;
-      background: #f0f8ff;
-      border-left: 4px solid #007acc;
-    }
-    .jsme-container {
-      width: 100%;
-      height: 300px;
-      border: 1px solid #ddd;
-      margin: 15px 0;
-    }
-    .advanced-tool {
-      background: #f0f8ff;
-      padding: 15px;
-      border-radius: 5px;
+      justify-content: center;
       margin: 20px 0;
     }
-    .loading {
+    .nav a {
+      margin: 0 10px;
       color: #007acc;
-      font-style: italic;
-    }
-    .viewer-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .viewer-controls {
-      margin: 15px 0;
+      text-decoration: none;
+      font-weight: bold;
     }
     footer {
       text-align: center;
@@ -159,6 +93,10 @@
       background: #333;
       color: white;
       margin-top: 40px;
+    }
+    @media (max-width: 768px) {
+      .container { padding: 15px; }
+      h1 { font-size: 1.8em; }
     }
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8239377679801110" crossorigin="anonymous"></script>
@@ -168,13 +106,13 @@
 <header>
   <div class="container">
     <h1>🧪 Chemistry Reaction Explorer</h1>
-    <p>Professional tools for chemistry students and educators</p>
+    <p>Discover, share, and learn about chemical reactions</p>
   </div>
 </header>
 
 <div class="container">
-  <!-- Ad Container -->
   <div class="ad-container">
+    <!-- AdSense Header Ad -->
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-8239377679801110"
@@ -186,442 +124,174 @@
     </script>
   </div>
 
-  <!-- Professional Tools Section -->
-  <div class="tool-container">
-    <h2>Interactive Chemistry Tools</h2>
+  <form id="reactionForm">
+    <h2>Submit a Chemical Reaction</h2>
+    <input type="text" id="reaction" placeholder="Enter chemical reaction (e.g., 2H₂ + O₂ → 2H₂O)" required />
+    <textarea id="explanation" placeholder="Detailed explanation of the reaction (optional)" rows="4"></textarea>
+    <input type="text" id="video" placeholder="YouTube Video URL demonstrating the reaction (optional)" />
+    <button type="submit">Submit Reaction</button>
+  </form>
+
+  <div class="ad-container">
+    <!-- AdSense In-Content Ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8239377679801110"
+         data-ad-slot="2345678901"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <button onclick="togglePeriodicTable()">Show/Hide Interactive Periodic Table</button>
+  <div id="periodicTableContainer" style="display:none; margin-top:20px;">
+    <iframe src="https://ptable.com" width="100%" height="600" style="border:none;"></iframe>
+  </div>
+
+  <div id="reactionList"></div>
+
+  <div class="ad-container">
+    <!-- AdSense Bottom Ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8239377679801110"
+         data-ad-slot="3456789012"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div id="chemistryBlog">
+    <h2>Chemistry Blog</h2>
     
-    <div class="tool-tabs">
-      <div class="tool-tab active" onclick="openTool('balancer')">Equation Balancer</div>
-      <div class="tool-tab" onclick="openTool('simulator')">Reaction Simulator</div>
-      <div class="tool-tab" onclick="openTool('3dviewer')">3D Molecule Viewer</div>
-      <div class="tool-tab" onclick="openTool('structure')">Structure Builder</div>
+    <div class="blog-post">
+      <h3>The Science Behind Combustion Reactions</h3>
+      <p>Combustion reactions are exothermic redox chemical reactions that occur between a fuel and an oxidant, typically producing heat and light in the form of flame. The most common combustion reaction is the burning of hydrocarbons with oxygen to produce carbon dioxide and water...</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Combustion_reaction_of_methane.jpg/800px-Combustion_reaction_of_methane.jpg" alt="Combustion reaction illustration">
+      <p>Combustion is essential for many human activities including heating, cooking, transportation, and electricity generation. Understanding combustion chemistry helps in developing more efficient engines and reducing pollution...</p>
     </div>
     
-    <!-- Equation Balancer -->
-    <div id="balancer" class="tool-content active">
-      <h3>Chemical Equation Balancer</h3>
-      <input type="text" id="unbalancedEquation" placeholder="Enter unbalanced equation (e.g., H2 + O2 → H2O)">
-      <button onclick="balanceEquation()">Balance Equation</button>
-      <div id="balancingSteps" class="calculation-result"></div>
-      <div id="balancedEquation" style="font-size: 1.5em; margin: 15px 0;"></div>
-      
-      <h4>3D Visualization of Products</h4>
-      <div id="moleculeViewer" class="molecule-canvas"></div>
+    <div class="blog-post">
+      <h3>Acid-Base Reactions: Neutralization Explained</h3>
+      <p>An acid-base reaction is a chemical reaction that occurs between an acid and a base. These reactions typically form water and a salt and involve the exchange of protons (H⁺ ions). The general form of an acid-base reaction is: Acid + Base → Salt + Water...</p>
+      <p>Understanding acid-base chemistry is crucial in many fields including medicine (pH balance in the body), environmental science (acid rain), and industrial processes (chemical manufacturing)...</p>
     </div>
     
-    <!-- Reaction Simulator -->
-    <div id="simulator" class="tool-content">
-      <h3>Reaction Simulator</h3>
-      <p>Drag elements/compounds into the reaction area:</p>
-      <div>
-        <span class="element-draggable" draggable="true" data-formula="H2">H₂</span>
-        <span class="element-draggable" draggable="true" data-formula="O2">O₂</span>
-        <span class="element-draggable" draggable="true" data-formula="Na">Na</span>
-        <span class="element-draggable" draggable="true" data-formula="Cl2">Cl₂</span>
-        <span class="element-draggable" draggable="true" data-formula="CH4">CH₄</span>
-        <span class="element-draggable" draggable="true" data-formula="H2O">H₂O</span>
-      </div>
-      <div class="simulator-area" id="reactionArea" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <p>Drop reactants here</p>
-      </div>
-      <button onclick="simulateReaction()">Simulate Reaction</button>
-      <div id="reactionResult"></div>
-      <div id="reactionVisualization" class="molecule-canvas"></div>
+    <div class="blog-post">
+      <h3>Redox Reactions: The Chemistry of Electron Transfer</h3>
+      <p>Redox (reduction-oxidation) reactions involve the transfer of electrons between chemical species. The species that loses electrons is oxidized, while the species that gains electrons is reduced. These reactions are fundamental to many biological processes and industrial applications...</p>
+      <img src="https://www.chemistrylearner.com/wp-content/uploads/2020/08/Redox-Reaction-Examples.jpg" alt="Redox reaction examples">
+      <p>Everyday examples of redox reactions include rusting of iron, bleaching of stains, and the operation of batteries. In living organisms, cellular respiration is essentially a series of redox reactions...</p>
     </div>
     
-    <!-- 3D Molecule Viewer -->
-    <div id="3dviewer" class="tool-content">
-      <h3>Advanced 3D Molecule Viewer</h3>
-      <input type="text" id="moleculeInput" placeholder="Enter PDB ID, SMILES, or name (e.g., 2POR, C1CCCCC1, caffeine)">
-      <button onclick="render3DMolecule()">Render Molecule</button>
-      
-      <div class="viewer-container">
-        <div id="advancedMoleculeViewer" class="molecule-canvas"></div>
-        <div id="secondaryViewer" class="molecule-canvas"></div>
-      </div>
-      
-      <div class="viewer-controls">
-        <button onclick="rotateMolecule('x')">Rotate X</button>
-        <button onclick="rotateMolecule('y')">Rotate Y</button>
-        <button onclick="rotateMolecule('z')">Rotate Z</button>
-        <button onclick="zoomMolecule(1.2)">Zoom In</button>
-        <button onclick="zoomMolecule(0.8)">Zoom Out</button>
-        <button onclick="changeStyle('stick')">Stick</button>
-        <button onclick="changeStyle('sphere')">Sphere</button>
-        <button onclick="changeStyle('cartoon')">Cartoon</button>
-      </div>
-      
-      <h4>Example Structures:</h4>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-        <div style="height: 200px; width: 200px; position: relative;" class='viewer_3Dmoljs' 
-             data-pdb='2POR' data-backgroundcolor='0xffffff' data-style='stick' data-ui='true'></div>
-        <div style="height: 200px; width: 200px; position: relative;" class='viewer_3Dmoljs' 
-             data-pdb='1CRN' data-backgroundcolor='0xffffff' data-style='cartoon' data-ui='true'></div>
-        <div style="height: 200px; width: 200px; position: relative;" class='viewer_3Dmoljs' 
-             data-pdb='6LU7' data-backgroundcolor='0xffffff' data-style='sphere' data-ui='true'></div>
-      </div>
+    <div class="blog-post">
+      <h3>Precipitation Reactions: When Solids Form in Solution</h3>
+      <p>A precipitation reaction occurs when two soluble ionic compounds react in aqueous solution to form an insoluble solid called a precipitate. These reactions follow the general pattern: AB(aq) + CD(aq) → AD(s) + CB(aq)...</p>
+      <p>Precipitation reactions are used in water treatment, qualitative chemical analysis, and the production of pigments and other industrial chemicals. They also play important roles in biological systems such as bone formation and kidney stone development...</p>
     </div>
     
-    <!-- Structure Builder -->
-    <div id="structure" class="tool-content">
-      <h3>Molecular Structure Builder</h3>
-      <div id="jsme-container" class="jsme-container"></div>
-      <button onclick="getJSMEStructure()">Get Structure</button>
-      <div id="jsmeOutput" class="calculation-result"></div>
-      <button onclick="addToSimulator()">Add to Reaction Simulator</button>
-      <button onclick="renderJSMEStructure()">Render in 3D Viewer</button>
-      
-      <h4>Built Molecule:</h4>
-      <div id="jsmeMoleculeViewer" class="molecule-canvas"></div>
+    <div class="blog-post">
+      <h3>The Chemistry of Photosynthesis</h3>
+      <p>Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy, usually from the sun, into chemical energy stored in glucose. The overall reaction can be represented as: 6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂...</p>
+      <img src="https://www.sciencefacts.net/wp-content/uploads/2020/06/Photosynthesis-Process.jpg" alt="Photosynthesis process">
+      <p>This remarkable process not only provides energy for nearly all life on Earth but also maintains atmospheric oxygen levels and serves as the foundation of the food chain. Understanding photosynthesis is key to addressing global challenges like food security and climate change...</p>
     </div>
   </div>
   
-  <!-- Previous reaction list and blog sections can go here -->
+  <div class="nav">
+    <a href="#chemistryBlog">More Chemistry Articles</a>
+    <a href="#reactionList">View Reactions</a>
+    <a href="#reactionForm">Submit a Reaction</a>
+  </div>
 </div>
 
 <footer>
-  <p>Chemistry Reaction Explorer &copy; 2023 | Professional Chemistry Tools</p>
+  <p>Chemistry Reaction Explorer &copy; 2023 | Educational Resource for Chemistry Enthusiasts</p>
+  <p>Contact: chemistry@example.com | Privacy Policy | Terms of Service</p>
 </footer>
 
 <script>
-  // Global variables
-  let currentViewer;
-  let jsmeApplet;
-  
-  // Initialize when page loads
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize JSME editor
-    jsmeApplet = new JSApplet.JSME("jsme-container", "100%", "300px", {
-      options: "oldlook,star,noquery"
-    });
-    
-    // Set up drag events for simulator
-    document.querySelectorAll('.element-draggable').forEach(el => {
-      el.addEventListener('dragstart', drag);
-    });
-    
-    // Initialize 3Dmol.js viewers in example divs
-    const viewers = document.querySelectorAll('.viewer_3Dmoljs');
-    viewers.forEach(viewerDiv => {
-      const pdb = viewerDiv.getAttribute('data-pdb');
-      const bgcolor = viewerDiv.getAttribute('data-backgroundcolor');
-      const style = viewerDiv.getAttribute('data-style');
-      const ui = viewerDiv.getAttribute('data-ui') === 'true';
-      
-      const viewer = $3Dmol.createViewer(viewerDiv, {
-        backgroundColor: parseInt(bgcolor)
-      });
-      
-      viewer.addModel(`https://files.rcsb.org/view/${pdb}.pdb`, "pdb", {
-        keepH: true,
-        doAssembly: true
-      }).then(() => {
-        viewer.setStyle({}, {[style]: {}});
-        viewer.zoomTo();
-        viewer.render();
-        
-        if (ui) {
-          viewer.addPropertyLabels("resn", "resn", {
-            fontColor: 'black',
-            fontSize: 12,
-            showBackground: false
-          });
-        }
-      });
+  const backendUrl = "https://chem-reaction-backend-2.onrender.com";
+
+  document.getElementById("reactionForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = {
+      reaction: document.getElementById("reaction").value,
+      explanation: document.getElementById("explanation").value,
+      video_url: document.getElementById("video").value
+    };
+    fetch(`${backendUrl}/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then(() => {
+      alert("Reaction submitted successfully! Thank you for your contribution.");
+      document.getElementById("reactionForm").reset();
+      loadReactions();
+    }).catch(err => {
+      alert("Error submitting reaction. Please try again later.");
+      console.error(err);
     });
   });
 
-  // Equation Balancer
-  function balanceEquation() {
-    const input = document.getElementById('unbalancedEquation').value;
-    if (!input) return;
-    
-    // In a real app, you'd call a chemistry API or use a library
-    const examples = {
-      "H2 + O2 → H2O": {
-        balanced: "2H₂ + O₂ → 2H₂O",
-        steps: [
-          "Count atoms on each side: H=2, O=2 → H=2, O=1",
-          "Balance oxygen by adding coefficient to H₂O",
-          "Now hydrogen is unbalanced (4 on left, 2 on right)",
-          "Add coefficient to H₂ on left to balance hydrogen"
-        ],
-        products: ["H2O"]
-      },
-      "CH4 + O2 → CO2 + H2O": {
-        balanced: "CH₄ + 2O₂ → CO₂ + 2H₂O",
-        steps: [
-          "Balance carbon first (already balanced)",
-          "Balance hydrogen by adding coefficient to H₂O",
-          "Finally balance oxygen"
-        ],
-        products: ["CO2", "H2O"]
-      }
-    };
-    
-    let result = examples[input] || {
-      balanced: "Could not balance automatically. Try common examples like H2 + O2 → H2O",
-      steps: ["No balancing steps available for this equation"],
-      products: []
-    };
-    
-    document.getElementById('balancedEquation').innerHTML = `Balanced: <strong>${result.balanced}</strong>`;
-    document.getElementById('balancingSteps').innerHTML = 
-      "<h4>Balancing Steps:</h4><ol>" + 
-      result.steps.map(step => `<li>${step}</li>`).join('') + 
-      "</ol>";
-    
-    // Visualize products
-    visualizeProducts(result.products);
-  }
-  
-  function visualizeProducts(products) {
-    const viewer = $3Dmol.createViewer("moleculeViewer", {
-      backgroundColor: 0xffffff
-    });
-    
-    if (products.length === 0) {
-      viewer.addLabel("No molecules to visualize", {
-        position: {x: 0, y: 0, z: 0},
-        fontSize: 14,
-        fontColor: 'black'
-      });
-      viewer.render();
-      return;
-    }
-    
-    let xOffset = 0;
-    products.forEach(product => {
-      viewer.addModel(product, "smiles", {
-        x: xOffset,
-        y: 0,
-        z: 0
-      });
-      xOffset += 10;
-    });
-    
-    viewer.setStyle({}, {stick: {}});
-    viewer.zoomTo();
-    viewer.render();
-  }
-
-  // Reaction Simulator
-  function allowDrop(e) {
-    e.preventDefault();
-  }
-  
-  function drag(e) {
-    e.dataTransfer.setData("text", e.target.dataset.formula);
-  }
-  
-  function drop(e) {
-    e.preventDefault();
-    const formula = e.dataTransfer.getData("text");
-    const newElement = document.createElement('span');
-    newElement.className = 'element-draggable';
-    newElement.textContent = formula.replace(/\d/g, d => '₀₁₂₃₄₅₆₇₈₉'[d]);
-    newElement.dataset.formula = formula;
-    e.target.appendChild(newElement);
-  }
-  
-  function simulateReaction() {
-    const area = document.getElementById('reactionArea');
-    const formulas = Array.from(area.children)
-      .filter(el => el.dataset.formula)
-      .map(el => el.dataset.formula);
-    
-    if (formulas.length < 2) {
-      alert("Please add at least 2 reactants");
-      return;
-    }
-    
-    const reactions = {
-      "H2,O2": {
-        equation: "2H₂ + O₂ → 2H₂O",
-        type: "Combustion",
-        products: ["H2O"]
-      },
-      "Na,Cl2": {
-        equation: "2Na + Cl₂ → 2NaCl",
-        type: "Synthesis",
-        products: ["NaCl"]
-      },
-      "CH4,O2": {
-        equation: "CH₄ + 2O₂ → CO₂ + 2H₂O",
-        type: "Combustion",
-        products: ["CO2", "H2O"]
-      }
-    };
-    
-    const key = formulas.sort().join(',');
-    const result = reactions[key] || {
-      equation: "No known reaction between these substances",
-      type: "Unknown",
-      products: []
-    };
-    
-    document.getElementById('reactionResult').innerHTML = `
-      <h4>Reaction:</h4>
-      <p>${result.equation}</p>
-      <p><strong>Type:</strong> ${result.type}</p>
-    `;
-    
-    // Visualize reaction products
-    const viewer = $3Dmol.createViewer("reactionVisualization", {
-      backgroundColor: 0xffffff
-    });
-    
-    if (result.products.length > 0) {
-      let xOffset = 0;
-      result.products.forEach(product => {
-        viewer.addModel(product, "smiles", {
-          x: xOffset,
-          y: 0,
-          z: 0
+  function loadReactions() {
+    fetch(`${backendUrl}/reactions`)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("reactionList");
+        container.innerHTML = "<h2>Recent Chemical Reactions</h2>";
+        if (data.length === 0) {
+          container.innerHTML += "<p>No reactions submitted yet. Be the first!</p>";
+          return;
+        }
+        data.forEach(reaction => {
+          container.innerHTML += `
+            <div class="reaction">
+              <h3>${reaction.reaction}</h3>
+              ${reaction.explanation ? `<p>${reaction.explanation}</p>` : ""}
+              ${reaction.video_url ? 
+                `<div class="video-container">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/${extractVideoId(reaction.video_url)}" 
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen></iframe>
+                </div>` 
+                : ""}
+              <p><em>Submitted at: ${new Date(reaction.submitted_at).toLocaleString()}</em></p>
+            </div>`;
         });
-        xOffset += 10;
+      })
+      .catch(err => {
+        console.error("Error loading reactions:", err);
+        document.getElementById("reactionList").innerHTML = 
+          "<p>Could not load reactions. Please check your internet connection and try again.</p>";
       });
-      viewer.setStyle({}, {stick: {}});
-    } else {
-      viewer.addLabel("No reaction products to visualize", {
-        position: {x: 0, y: 0, z: 0},
-        fontSize: 14,
-        fontColor: 'black'
-      });
+  }
+
+  function extractVideoId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  function togglePeriodicTable() {
+    const container = document.getElementById("periodicTableContainer");
+    container.style.display = container.style.display === "none" ? "block" : "none";
+  }
+
+  // Load reactions when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    loadReactions();
+    
+    // Initialize AdSense
+    if (typeof adsbygoogle !== 'undefined') {
+      adsbygoogle.push({});
     }
-    viewer.zoomTo();
-    viewer.render();
-  }
-
-  // 3D Molecule Viewer
-  function render3DMolecule() {
-    const input = document.getElementById("moleculeInput").value.trim();
-    if (!input) return;
-    
-    const viewer = $3Dmol.createViewer("advancedMoleculeViewer", {
-      backgroundColor: 0xffffff
-    });
-    
-    // Try to determine input type
-    if (input.length === 4 && /^\d[A-Za-z]{2,3}$/.test(input)) {
-      // PDB ID
-      viewer.addModel(`https://files.rcsb.org/view/${input}.pdb`, "pdb")
-        .then(() => {
-          viewer.setStyle({}, {cartoon: {}});
-          viewer.zoomTo();
-          viewer.render();
-        });
-    } else if (input.includes(" ")) {
-      // Common name
-      const smiles = getSmilesForCommonName(input);
-      if (smiles) {
-        viewer.addModel(smiles, "smiles");
-        viewer.setStyle({}, {stick: {}});
-        viewer.zoomTo();
-        viewer.render();
-      } else {
-        viewer.addLabel("Unknown molecule name", {
-          position: {x: 0, y: 0, z: 0},
-          fontSize: 14,
-          fontColor: 'black'
-        });
-        viewer.render();
-      }
-    } else {
-      // Assume SMILES
-      viewer.addModel(input, "smiles");
-      viewer.setStyle({}, {stick: {}});
-      viewer.zoomTo();
-      viewer.render();
-    }
-    
-    window.currentViewer = viewer;
-  }
-
-  function getSmilesForCommonName(name) {
-    const names = {
-      "caffeine": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
-      "aspirin": "CC(=O)OC1=CC=CC=C1C(=O)O",
-      "glucose": "C(C1C(C(C(C(O1)O)O)O)O"
-    };
-    return names[name.toLowerCase()];
-  }
-
-  function rotateMolecule(axis) {
-    if (!window.currentViewer) return;
-    const angle = Math.PI / 4; // 45 degrees
-    window.currentViewer.rotate(axis === 'x' ? angle : 0, 
-                               axis === 'y' ? angle : 0, 
-                               axis === 'z' ? angle : 0);
-    window.currentViewer.render();
-  }
-
-  function zoomMolecule(factor) {
-    if (!window.currentViewer) return;
-    window.currentViewer.zoom(factor);
-    window.currentViewer.render();
-  }
-
-  function changeStyle(style) {
-    if (!window.currentViewer) return;
-    window.currentViewer.setStyle({}, {[style]: {}});
-    window.currentViewer.render();
-  }
-
-  // JSME Structure Builder
-  function getJSMEStructure() {
-    const mol = jsmeApplet.smiles();
-    const formula = calculateFormula(mol);
-    document.getElementById("jsmeOutput").innerHTML = `
-      <p><strong>SMILES:</strong> ${mol}</p>
-      <p><strong>Molecular Formula:</strong> ${formula}</p>
-    `;
-    return {smiles: mol, formula: formula};
-  }
-
-  function calculateFormula(smiles) {
-    // This is a simplified version - in production use a cheminformatics library
-    const examples = {
-      "C1CCCCC1": "C6H12", // Cyclohexane
-      "CCO": "C2H6O", // Ethanol
-      "CC(=O)O": "C2H4O2" // Acetic acid
-    };
-    return examples[smiles] || smiles.replace(/[^A-Za-z0-9]/g, '');
-  }
-
-  function addToSimulator() {
-    const {formula} = getJSMEStructure();
-    const area = document.getElementById("reactionArea");
-    const newElement = document.createElement('span');
-    newElement.className = 'element-draggable';
-    newElement.textContent = formula;
-    newElement.dataset.formula = formula;
-    area.appendChild(newElement);
-  }
-
-  function renderJSMEStructure() {
-    const {smiles} = getJSMEStructure();
-    const viewer = $3Dmol.createViewer("jsmeMoleculeViewer", {
-      backgroundColor: 0xffffff
-    });
-    viewer.addModel(smiles, "smiles");
-    viewer.setStyle({}, {stick: {}});
-    viewer.zoomTo();
-    viewer.render();
-  }
-
-  // Tool navigation
-  function openTool(toolName) {
-    document.querySelectorAll('.tool-content').forEach(el => {
-      el.classList.remove('active');
-    });
-    document.querySelectorAll('.tool-tab').forEach(el => {
-      el.classList.remove('active');
-    });
-    
-    document.getElementById(toolName).classList.add('active');
-    document.querySelector(`.tool-tab[onclick="openTool('${toolName}')"]`).classList.add('active');
-  }
+  });
 </script>
+
 </body>
 </html>
