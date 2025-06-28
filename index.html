@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chemistry Reaction Explorer</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+    input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
+    button { padding: 10px 20px; background-color: #007acc; color: white; border: none; cursor: pointer; }
+    .reaction { margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🧪 Chemistry Reaction Explorer</h1>
+  <form id="reactionForm">
+    <input type="text" id="reaction" placeholder="Chemical Reaction" required />
+    <textarea id="explanation" placeholder="Explanation (optional)"></textarea>
+    <input type="text" id="video" placeholder="YouTube Video URL (optional)" />
+    <button type="submit">Submit Reaction</button>
+  </form>
+
+  <button onclick="togglePeriodicTable()">Show/Hide Periodic Table</button>
+  <div id="periodicTableContainer" style="display:none; margin-top:20px;">
+    <iframe src="https://ptable.com" width="100%" height="600" style="border:none;"></iframe>
+  </div>
+
+  <div id="reactionList"></div>
+</div>
+
+<script>
+  document.getElementById("reactionForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = {
+      reaction: document.getElementById("reaction").value,
+      explanation: document.getElementById("explanation").value,
+      video_url: document.getElementById("video").value
+    };
+    fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then(() => {
+      alert("Reaction submitted!");
+      document.getElementById("reactionForm").reset();
+      loadReactions();
+    });
+  });
+
+  function loadReactions() {
+    fetch("http://localhost:5000/reactions")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("reactionList");
+        container.innerHTML = "";
+        data.forEach(reaction => {
+          container.innerHTML += `
+            <div class="reaction">
+              <strong>${reaction.reaction}</strong><br/>
+              ${reaction.explanation ? `<p>${reaction.explanation}</p>` : ""}
+              ${reaction.video_url ? `<a href="${reaction.video_url}" target="_blank">Watch on YouTube</a>` : ""}
+              <p><em>Submitted at: ${reaction.submitted_at}</em></p>
+            </div>`;
+        });
+      });
+  }
+
+  function togglePeriodicTable() {
+    const container = document.getElementById("periodicTableContainer");
+    container.style.display = container.style.display === "none" ? "block" : "none";
+  }
+
+  loadReactions();
+</script>
+
+</body>
+</html>
