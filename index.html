@@ -31,6 +31,8 @@
 </div>
 
 <script>
+  const backendUrl = "https://chem-reaction-backend-2.onrender.com";
+
   document.getElementById("reactionForm").addEventListener("submit", function(e) {
     e.preventDefault();
     const data = {
@@ -38,7 +40,7 @@
       explanation: document.getElementById("explanation").value,
       video_url: document.getElementById("video").value
     };
-    fetch("https://starlit-parfait-1b54d2.netlify.app/", {
+    fetch(`${backendUrl}/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -50,7 +52,7 @@
   });
 
   function loadReactions() {
-    fetch("http://localhost:5000/reactions")
+    fetch(`${backendUrl}/reactions`)
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById("reactionList");
